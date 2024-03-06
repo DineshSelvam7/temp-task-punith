@@ -1,0 +1,16 @@
+<div>
+    <input type="file" (change)="onSelectFile($event)" />
+    <button (click)="onUpload()">Upload</button>
+  
+    <div *ngIf="uploadProgress$ | async as uploadProgress">
+      Upload Progress: {{ uploadProgress }}%
+    </div>
+  
+    <div *ngIf="downloadURL$ | async as downloadURL">
+      <img *ngIf="selectedFile?.type.includes('image')" [src]="downloadURL" alt="Preview" />
+      <video *ngIf="selectedFile?.type.includes('video')" [src]="downloadURL" controls></video>
+    </div>
+  
+    <div *ngIf="(uploadProgress$ | async) === 100">File uploaded successfully!</div>
+  </div>
+  
